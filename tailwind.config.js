@@ -18,8 +18,8 @@ module.exports = {
     extend: {
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
-        inter: ["Inter", "sans-serif"], 
-        interSemibold: ["Inter", "sans-serif"], 
+        inter: ["Inter", "sans-serif"],
+        interSemibold: ["Inter", "sans-serif"],
         interBold: ["Inter", "sans-serif"],
         jakarta: ["'Plus Jakarta Sans'", "sans-serif"],
         neuething: ["NeuethingSans", "sans-serif"],
@@ -54,6 +54,7 @@ module.exports = {
           100: "#1E1E1E",
           200: "#151515",
           300: "#404742",
+          400: "#292836",
         },
         gray: {
           25: "#F8F6F4",
@@ -63,6 +64,7 @@ module.exports = {
           90: "#b6b6b6",
           100: "#F8FAFA",
           200: "#E9ECEF",
+          210: "#EBEBEB",
           300: "#DEE2E6",
           310: "#DDDDDD",
           320: "#D8D8D8",
@@ -83,7 +85,7 @@ module.exports = {
           80: "#0567D4",
           100: "#BFDBFE",
           200: "#93C5FD",
-          300: "#4F37FD", 
+          300: "#4F37FD",
           400: "#2563EB",
           500: "#1D4ED8",
           600: "#1E40AF",
@@ -94,8 +96,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require("tailwindcss-animate"),
-    require("tailwind-scrollbar"),
-  ],
+  plugins: [require("tailwindcss-animate"), require("tailwind-scrollbar")],
 };

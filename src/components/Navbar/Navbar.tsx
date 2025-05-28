@@ -6,6 +6,7 @@ import Button from "../Buttons/Button";
 export default function Navbar() {
   const [darkMode, setDarkMode] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const toggleDarkMode = () => {
     const newMode = !darkMode;
@@ -26,9 +27,23 @@ export default function Navbar() {
     }
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="w-full md:bg-white bg-gray-30 dark:bg-gray-900 shadow-sm fixed top-0 z-50 font-outfit md:h-[70px]">
-      <div className="max-w-[1320px] mx-auto px-6 md:py-4 flex items-center justify-between">
+    <header
+      className={`w-full fixed top-0 z-50 font-outfit md:h-[70px] transition-colors duration-300 ${
+        isScrolled
+          ? "bg-gray-80 dark:bg-lightblack-100 shadow-sm"
+          : "md:bg-gray-25 bg-gray-30 dark:bg-lightblack-200 md:shadow-none"
+      }`}
+    >
+      <div className="max-w-[1320px] mx-auto md:px-4 px-2 md:py-2 py-2 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-2">
           <img
@@ -36,12 +51,12 @@ export default function Navbar() {
             alt="Logo"
             width={120}
             height={32}
-            className="w-auto h-8"
+            className="w-auto h-11"
           />
         </Link>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden space-x-8 md:flex">
+        <nav className="hidden space-x-4 md:flex">
           {["Home", "About", "Services", "Blog", "Contact Us"].map((item) => (
             <Link
               key={item}
@@ -76,7 +91,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="absolute left-0 right-0 px-6 py-2 shadow-lg md:hidden bg-gray-30 dark:bg-lightblack-300">
+        <div className="absolute left-0 right-0 px-6 shadow-lg md:hidden bg-gray-30 dark:bg-lightblack-300">
           <div className="flex flex-col space-y-4">
             {["Home", "About", "Services", "Blog", "Contact Us"].map((item) => (
               <Link
